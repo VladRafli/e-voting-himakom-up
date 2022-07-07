@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  username String    @db.Char(50)
+  password String    @db.VarChar(255)
+  Vote     Vote[]
+  Session  Session[]
+}
+
+model Session {
+  id      String @id @db.Char(50)
+  user_id Int    @unique
+  User    User   @relation(fields: [user_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+}
+
+model Vote {
+  id           Int       @id @default(autoincrement())
+  user_id      Int       @unique
+  candidate_id Int       @unique
+  User         User      @relation(fields: [user_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  Candidate    Candidate @relation(fields: [candidate_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+}
+
+model Candidate {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+  Vote Vote[]
+}
