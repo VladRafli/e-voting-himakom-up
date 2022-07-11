@@ -4,6 +4,8 @@ import './css/index.css'
 
 const loginDialogElement = document.querySelector('#login-dialog')
 const loginDialog = new A11yDialog(loginDialogElement)
+const noticeDialogElement = document.querySelector('#notice-dialog')
+const noticeDialog = new A11yDialog(noticeDialogElement)
 const voteButtons = document.querySelectorAll('#vote')
 const loginButton = document.querySelector('#login-button')
 const logoutButton = document.querySelector('#logout-button')
@@ -14,9 +16,16 @@ const voteAlert = document.querySelector('#vote-alert')
 const voteAlertClose = voteAlert.querySelector('button')
 const voteSuccess = document.querySelector('#vote-sucess')
 const voteSuccessClose = voteSuccess.querySelector('button')
+const noticeSeen = sessionStorage.getItem('noticeSeen')
+const setNotice = /** @param {Boolean} status */ (status) => { sessionStorage.setItem('noticeSeen', JSON.stringify(status)) }
+
+if (noticeSeen === null || noticeSeen === false) {
+    noticeDialog.show()
+    setNotice(true)
+}
 
 axios
-    .get('http://localhost/isloggedin').then((res) => {
+    .get('http://localhost:5000/isloggedin').then((res) => {
         if (res.data === false) {
             voteButtons.forEach(el => {
                 // Disable Vote Button
@@ -34,7 +43,7 @@ loginForm.addEventListener('submit', (e) => {
     const password = loginForm.querySelector('[name="password"]').value
 
     axios
-        .post('http://localhost/login', {
+        .post('http://localhost:5000/login', {
             username: username,
             password: password
         })
@@ -72,7 +81,7 @@ voteButtons.forEach(el => {
 
     el.addEventListener('click', () => {
         axios
-            .post(`http://localhost/vote?id=${candidate_id}`)
+            .post(`http://localhost:5000/vote?id=${candidate_id}`)
             .then((res) => {
                 voteSuccess.classList.remove('hidden')
                 voteSuccess.classList.add('flex')
@@ -98,7 +107,7 @@ voteSuccessClose.addEventListener('click', () => {
 
 logoutButton.addEventListener('click', () => {
     axios
-        .post('http://localhost/logout')
+        .post('http://localhost:5000/logout')
         .then(res => {
             voteSuccess.classList.remove('hidden')
             voteSuccess.classList.add('flex')

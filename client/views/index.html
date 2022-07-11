@@ -29,11 +29,15 @@
 <body>
     <header class="p-10 flex justify-between items-center bg-gradient-to-tr from-red-500 via-orange-500 to-yellow-500">
         <img class="h-24" src="../src/img/HIMA PUTIH.png" alt="Logo Himakom Unperta">
-        <button id="login-button"
-            class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none"
-            data-a11y-dialog-show="login-dialog">Login</button>
-        <button id="logout-button"
-            class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none">Logout</button>
+        <div>
+            <button id="notice-button" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none"
+            data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>    
+            <button id="login-button"
+                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none"
+                data-a11y-dialog-show="login-dialog">Login</button>
+            <button id="logout-button"
+                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none">Logout</button>
+        </div>
     </header>
     <main class="p-10 bg-gray-200">
         <div id="vote-alert" class="p-4 mb-4 hidden bg-red-100 rounded-lg dark:bg-red-200" role="alert">
@@ -77,7 +81,7 @@
         <section class="grid grid-cols-2 grid-rows-1">
             <div class="flex flex-col items-center">
                 <h1 class="mb-5 text-3xl font-bold">Candidate Name</h1>
-                <img class="h-96 mb-5" src="../src/img/craig-mckay-jmURdhtm7Ng-unsplash.jpg" alt="Candidate Picture">
+                <img class="h-96 mb-5 rounded" src="../src/img/craig-mckay-jmURdhtm7Ng-unsplash.jpg" alt="Candidate Picture">
                 <button id="vote" data-candidate="1"
                     class="mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 transition-colors hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 motion-reduce:transition-none">Vote</button>
                 <h1 class="mb-5 text-3xl">Visi & Misi</h1>
@@ -89,7 +93,7 @@
             </div>
             <div class="flex flex-col items-center">
                 <h1 class="mb-5 text-3xl font-bold">Candidate Name</h1>
-                <img class="h-96 mb-5" src="../src/img/stefan-stefancik-QXevDflbl8A-unsplash.jpg"
+                <img class="h-96 mb-5 rounded" src="../src/img/stefan-stefancik-QXevDflbl8A-unsplash.jpg"
                     alt="Candidate Picture">
                 <button id="vote" data-candidate="2"
                     class="mb-5 px-10 py-2.5 text-white text-center font-medium  rounded-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 transition-colors hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 motion-reduce:transition-none">Vote</button>
@@ -153,6 +157,20 @@
                     class="mr-2 mb-2 px-5 py-2.5 text-white text-sm text-center font-medium rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                     type="submit">Login</button>
             </form>
+        </div>
+    </div>
+    <!-- A11y-Dialog Notice Form -->
+    <div class="dialog-container flex fixed top-0 right-0 bottom-0 left-0 z-[2] [&[aria-hidden=true]]:hidden"
+        id="notice-dialog" aria-hidden="true" aria-labelledby="Notice Dialog" aria-describedby="Dialog for Notice">
+        <div class="dialog-overlay fixed top-0 right-0 bottom-0 left-0 bg-gray-700 bg-opacity-80">
+        </div>
+        <div class="dialog-content h-full max-h-[90vh] min-h-[50vh] w-full max-w-[75vw] min-w-[20rem] m-auto p-10 flex flex-col relative bg-white z-[2]"
+            role="document">
+            <button data-a11y-dialog-hide class="dialog-close mb-5 text-[2.5rem] self-end"
+                aria-label="Close this dialog window">
+                &times;
+            </button>
+            <h1 class="mb-5 text-3xl text-center">Tata Cara Pemilihan</h1>
         </div>
     </div>
     <!-- For compiling Dynamic used Tailwind Class -->

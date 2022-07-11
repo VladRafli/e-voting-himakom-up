@@ -22,9 +22,10 @@ module.exports = async (req, res) => {
         }
     })
 
-    res.header('Cache-Control', 'no-store, no-cache, must-revalidate')
+    res.header('Cache-Control', ['no-store', 'no-cache', 'must-revalidate'])
     res.header('Pragma', 'no-cache')
     res.header('Expires', '0')
+    res.header('ETag', 'false')
     if (checkSession === null) {
         res.status(200).json(false)
     } else {
