@@ -11,20 +11,19 @@ module.exports = {
      */
     read: async (req, res) => {
         try {
+            const count = await prisma.vote.count({
+                select: {
+                    user_id: true,
+                },
+                where: req.user.id
+            })
+
             res
                 .status(200)
-                .json({
-                    msg: 'Success!',
-                    data: await prisma.vote.count({
-                        select: {
-                            candidate_id: true,
-                        }
-                    })
-                })
+                .json(count.user_id > 0 ? true : false)
         } catch (err) {
             res.status(500).json({ msg: err })
         }
-
     },
     /**
      * Create Vote Controller

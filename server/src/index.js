@@ -40,6 +40,11 @@ axios
         } else {
             loginButton.classList.add('hidden')
             logoutButton.classList.remove('hidden')
+            axios
+                .get('http://localhost:5000/vote')
+                .then(res => {
+                    alert(res?.data === true ? 'Sudah voting' : 'Belum voting')
+                })
         }
     })
     .catch(err => {
