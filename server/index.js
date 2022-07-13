@@ -45,14 +45,18 @@ const apiRoutes = new Router()
  */
 const nonScrictApiRoutes = new Router()
 
-webRoutes.use(helmet())
+webRoutes.use(helmet({
+    hsts: false
+}))
 webRoutes.get('/', (req, res) => {
     res
         .status(200)
         .render('index')
 })
 
-apiRoutes.use(helmet())
+apiRoutes.use(helmet({
+    hsts: false
+}))
 apiRoutes.post('/login', require('./controller/login.controller'))
 apiRoutes.get('/candidate', require('./controller/candidate.controller'))
 apiRoutes.get('/candidate', require('./controller/candidate.controller'))

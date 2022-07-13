@@ -40,17 +40,31 @@ axios
         } else {
             loginButton.classList.add('hidden')
             logoutButton.classList.remove('hidden')
+            // Cek apakah user sudah vote atau belum
             axios
                 .get('http://localhost:5000/vote')
                 .then(res => {
                     alert(res?.data === true ? 'Sudah voting' : 'Belum voting')
                 })
+                .catch(err => {
+                    // Disable Vote Button
+                    el.classList.value = 'mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gray-300 cursor-not-allowed'
+                    el.setAttribute('disabled', '')
+                    // Show Alert
+                    voteAlert.classList.remove('hidden')
+                    voteAlert.classList.add('flex')
+                    voteAlert.querySelector('[data-alert-text]').innerHTML = err?.response?.data ?? 'Seems the internal server is facing error, Please contact to the administrator.'
+                })
         }
     })
     .catch(err => {
+        // Disable Vote Button
+        el.classList.value = 'mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gray-300 cursor-not-allowed'
+        el.setAttribute('disabled', '')
+        // Show Alert
         voteAlert.classList.remove('hidden')
         voteAlert.classList.add('flex')
-        voteAlert.querySelector('[data-alert-text]').innerHTML = err?.response?.data?.msg ?? 'Seems the server is down, Please contact to the administrator.'
+        voteAlert.querySelector('[data-alert-text]').innerHTML = err?.response?.data?.msg ?? 'Seems the internal server is facing error, Please contact to the administrator.'
     })
     .finally(() => {
         setTimeout(() => {
@@ -109,6 +123,9 @@ voteButtons.forEach(el => {
                 voteSuccess.classList.remove('hidden')
                 voteSuccess.classList.add('flex')
                 voteSuccess.querySelector('[data-alert-text]').innerHTML = res.data.msg
+                setTimeout(() => {
+                    window.location.href = self.location.href
+                }, 1000)
             })
             .catch(err => {
                 voteAlert.classList.remove('hidden')
