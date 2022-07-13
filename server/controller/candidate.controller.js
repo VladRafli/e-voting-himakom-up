@@ -7,7 +7,11 @@ const express = require('express')
  * @param {express.Response} res 
  */
 module.exports = async (req, res) => {
-    res
-        .status(200)
-        .json({ msg: 'Success', data: await prisma.candidate.findMany() })
+    try {
+        res
+            .status(200)
+            .json({ msg: 'Success', data: await prisma.candidate.findMany() })
+    } catch (err) {
+        res.status(500).json({msg: err})
+    }
 }

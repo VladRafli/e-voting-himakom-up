@@ -10,16 +10,21 @@ module.exports = {
      * @param {express.Response} res 
      */
     read: async (req, res) => {
-        res
-            .status(200)
-            .json({
-                msg: 'Success!',
-                data: await prisma.vote.count({
-                    select: {
-                        candidate_id: true,
-                    }
+        try {
+            res
+                .status(200)
+                .json({
+                    msg: 'Success!',
+                    data: await prisma.vote.count({
+                        select: {
+                            candidate_id: true,
+                        }
+                    })
                 })
-            })
+        } catch (err) {
+            res.status(500).json({ msg: err })
+        }
+
     },
     /**
      * Create Vote Controller
@@ -28,44 +33,48 @@ module.exports = {
      * @param {express.Response} res 
      */
     create: async (req, res) => {
-        const candidate_id = parseInt(req.query.id)
+        try {
+            const candidate_id = parseInt(req.query.id)
 
-        const candidate = await prisma.candidate.findUnique({
-            where: {
-                id: candidate_id
-            }
-        })
-        // * Check if candidate available
-        if (candidate === null) {
-            res.status(400).json({
-                msg: 'Calon tidak ditemukan!'
+            const candidate = await prisma.candidate.findUnique({
+                where: {
+                    id: candidate_id
+                }
             })
-            return
-        }
-        // * Get user vote
-        const userVote = await prisma.vote.findFirst({
-            where: {
-                user_id: req.user.id
+            // * Check if candidate available
+            if (candidate === null) {
+                res.status(400).json({
+                    msg: 'Calon tidak ditemukan!'
+                })
+                return
             }
-        })
-
-        // * Check if user already voted
-        if (userVote !== null) {
-            res.status(400).json({
-                msg: 'User sudah melakukan voting'
+            // * Get user vote
+            const userVote = await prisma.vote.findFirst({
+                where: {
+                    user_id: req.user.id
+                }
             })
-            return
-        }
-        // * Insert user vote
-        await prisma.vote.create({
-            data: {
-                candidate_id: candidate_id,
-                user_id: req.user.id
-            }
-        })
 
-        res.status(200).json({
-            msg: `Berhasil vote untuk ${candidate.name}`
-        })
+            // * Check if user already voted
+            if (userVote !== null) {
+                res.status(400).json({
+                    msg: 'User sudah melakukan voting'
+                })
+                return
+            }
+            // * Insert user vote
+            await prisma.vote.create({
+                data: {
+                    candidate_id: candidate_id,
+                    user_id: req.user.id
+                }
+            })
+
+            res.status(200).json({
+                msg: `Berhasil vote untuk ${candidate.name}`
+            })
+        } catch (err) {
+            res.status(500).json({ msg: err })
+        }
     }
 } 

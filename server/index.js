@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const { Router } = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 const helmet = require('helmet')
@@ -12,7 +13,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 // ========================
-// * Middlewares
+// * Global Middlewares
 // ========================
 app.use(express.json())
 app.use(express.urlencoded({
@@ -27,22 +28,56 @@ app.use(morgan('dev'))
 app.use(cookieParser(
     process.env.SECRET
 ))
-app.use(helmet())
 
 // ========================
 // * Routes
 // ========================
-app.get('/', (req, res) => {
+/**
+ * @type {express.Router}
+ */
+const webRoutes = new Router()
+/**
+ * @type {express.Router}
+ */
+const apiRoutes = new Router()
+/**
+ * @type {express.Router}
+ */
+const nonScrictApiRoutes = new Router()
+
+webRoutes.use(helmet())
+webRoutes.get('/', (req, res) => {
     res
         .status(200)
         .render('index')
 })
-app.post('/login', require('./controller/login.controller'))
-app.get('/isloggedin', require('./controller/isLoggedIn.controller'))
-app.get('/candidate', require('./controller/candidate.controller'))
-app.get('/vote', require('./middleware/auth.middleware'), require('./controller/vote.controller').read)
-app.post('/vote', require('./middleware/auth.middleware'), require('./controller/vote.controller').create)
-app.post('/logout', require('./middleware/auth.middleware'), require('./controller/logout.controller'))
+
+apiRoutes.use(helmet())
+apiRoutes.post('/login', require('./controller/login.controller'))
+apiRoutes.get('/candidate', require('./controller/candidate.controller'))
+apiRoutes.get('/candidate', require('./controller/candidate.controller'))
+apiRoutes.get('/vote', require('./middleware/auth.middleware'), require('./controller/vote.controller').read)
+apiRoutes.post('/vote', require('./middleware/auth.middleware'), require('./controller/vote.controller').create)
+apiRoutes.post('/logout', require('./middleware/auth.middleware'), require('./controller/logout.controller'))
+
+nonScrictApiRoutes.use(
+    /** 
+     * @param {express.Request} req
+     * @param {express.Response} res
+     * @param {express.NextFunction} next
+     */
+    (req, res, next) => {
+        res.set('Cache-Control', ['no-store', 'no-cache', 'must-revalidate'])
+        res.set('Pragma', 'no-cache')
+        res.set('Expires', '0')
+        res.set('ETag', 'false')
+        next()
+})
+nonScrictApiRoutes.get('/isloggedin', require('./controller/isLoggedIn.controller'))
+
+app.use(webRoutes)
+app.use(apiRoutes)
+app.use(nonScrictApiRoutes)
 
 // ========================
 // Listener

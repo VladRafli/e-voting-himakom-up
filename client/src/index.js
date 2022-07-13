@@ -1,7 +1,9 @@
 import axios from 'axios'
 import A11yDialog from 'a11y-dialog'
+import 'animate.css'
 import './css/index.css'
 
+const spinner = document.querySelector('#spinner')
 const loginDialogElement = document.querySelector('#login-dialog')
 const loginDialog = new A11yDialog(loginDialogElement)
 const noticeDialogElement = document.querySelector('#notice-dialog')
@@ -14,7 +16,7 @@ const loginAlert = document.querySelector('#login-alert')
 const loginAlertClose = loginAlert.querySelector('button')
 const voteAlert = document.querySelector('#vote-alert')
 const voteAlertClose = voteAlert.querySelector('button')
-const voteSuccess = document.querySelector('#vote-sucess')
+const voteSuccess = document.querySelector('#vote-success')
 const voteSuccessClose = voteSuccess.querySelector('button')
 const noticeSeen = sessionStorage.getItem('noticeSeen')
 const setNotice = /** @param {Boolean} status */ (status) => { sessionStorage.setItem('noticeSeen', JSON.stringify(status)) }
@@ -24,18 +26,32 @@ if (noticeSeen === null || noticeSeen === false) {
     setNotice(true)
 }
 
+logoutButton.classList.add('hidden')
+
 axios
-    .get('http://localhost:5000/isloggedin').then((res) => {
+    .get('http://localhost:5000/isloggedin')
+    .then((res) => {
         if (res.data === false) {
             voteButtons.forEach(el => {
                 // Disable Vote Button
                 el.classList.value = 'mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gray-300 cursor-not-allowed'
                 el.setAttribute('disabled', '')
             })
-            logoutButton.classList.add('hidden')
         } else {
             loginButton.classList.add('hidden')
+            logoutButton.classList.remove('hidden')
         }
+    })
+    .catch(err => {
+        voteAlert.classList.remove('hidden')
+        voteAlert.classList.add('flex')
+        voteAlert.querySelector('[data-alert-text]').innerHTML = err?.response?.data?.msg ?? 'Seems the server is down, Please contact to the administrator.'
+    })
+    .finally(() => {
+        spinner.classList.add('animate__fadeOut')
+        setTimeout(() => {
+            spinner.classList.add('hidden')
+        }, 1000)
     })
 
 loginForm.addEventListener('submit', (e) => {
@@ -66,7 +82,7 @@ loginForm.addEventListener('submit', (e) => {
             // Show alert
             loginAlert.classList.remove('hidden')
             loginAlert.classList.add('flex')
-            loginAlert.querySelector('[data-alert-text]').innerHTML = err.response.data.msg
+            loginAlert.querySelector('[data-alert-text]').innerHTML = err?.response?.data?.msg ?? `${err.message}, Please contact the administrator.`
         })
     e.preventDefault()
 })
