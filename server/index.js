@@ -77,6 +77,11 @@ nonScrictApiRoutes.use(
         res.set('Pragma', 'no-cache')
         res.set('Expires', '0')
         res.set('ETag', 'false')
+        helmet({
+            hsts: false,
+            contentSecurityPolicy: false,
+            
+        })
         next()
 })
 nonScrictApiRoutes.get('/isloggedin', require('./controller/isLoggedIn.controller'))
