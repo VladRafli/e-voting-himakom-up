@@ -46,7 +46,8 @@ const apiRoutes = new Router()
 const nonScrictApiRoutes = new Router()
 
 webRoutes.use(helmet({
-    hsts: false
+    hsts: false,
+    contentSecurityPolicy: false
 }))
 webRoutes.get('/', (req, res) => {
     res
@@ -55,7 +56,8 @@ webRoutes.get('/', (req, res) => {
 })
 
 apiRoutes.use(helmet({
-    hsts: false
+    hsts: false,
+    contentSecurityPolicy: false
 }))
 apiRoutes.post('/login', require('./controller/login.controller'))
 apiRoutes.get('/candidate', require('./controller/candidate.controller'))
