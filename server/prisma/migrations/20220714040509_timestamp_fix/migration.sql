@@ -16,25 +16,25 @@
 
 */
 -- AlterTable
-ALTER TABLE `candidate` DROP COLUMN `created_at`,
+ALTER TABLE `Candidate` DROP COLUMN `created_at`,
     DROP COLUMN `updated_at`,
     ADD COLUMN `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     ADD COLUMN `updatedAt` DATETIME(3) NOT NULL;
 
 -- AlterTable
-ALTER TABLE `session` DROP COLUMN `created_at`,
+ALTER TABLE `Session` DROP COLUMN `created_at`,
     DROP COLUMN `updated_at`,
     ADD COLUMN `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     ADD COLUMN `updatedAt` DATETIME(3) NOT NULL;
 
 -- AlterTable
-ALTER TABLE `user` DROP COLUMN `created_at`,
+ALTER TABLE `User` DROP COLUMN `created_at`,
     DROP COLUMN `updated_at`,
     ADD COLUMN `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     ADD COLUMN `updatedAt` DATETIME(3) NOT NULL;
 
 -- AlterTable
-ALTER TABLE `vote` DROP COLUMN `created_at`,
+ALTER TABLE `Vote` DROP COLUMN `created_at`,
     DROP COLUMN `updated_at`,
     ADD COLUMN `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     ADD COLUMN `updatedAt` DATETIME(3) NOT NULL;
