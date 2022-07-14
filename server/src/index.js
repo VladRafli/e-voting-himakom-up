@@ -54,7 +54,10 @@ axios
                             .get(`http://${window.location.host}/vote`)
                             .then(res => {
                                 console.log(res?.data)
-                                hasilVoteDialogElement.querySelector('[data-dialog-content]').innerHTML = `<p>Nama Kandidat: ${res.data?.data?.Candidate?.name}</p>`
+                                hasilVoteDialogElement.querySelector('[data-dialog-content]').innerHTML = `
+                                    <p>Kandidat Dipilih: ${res.data?.data?.Candidate?.name}</p>
+                                    <p>Waktu Voting: ${new Date(res.data?.data?.createdAt)}</p>
+                                `
                             })
                     }
                 })

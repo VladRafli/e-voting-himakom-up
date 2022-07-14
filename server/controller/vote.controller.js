@@ -13,13 +13,12 @@ module.exports = {
         try {
             const vote = await prisma.vote.findFirst({
                 where: {
-                    id: req.user.id
+                    user_id: req.user.User.id
                 },
                 include: {
                     Candidate: true
                 }
             })
-
             res
                 .status(200)
                 .json({
@@ -39,7 +38,6 @@ module.exports = {
     create: async (req, res) => {
         try {
             const candidate_id = parseInt(req.query.id)
-
             const candidate = await prisma.candidate.findUnique({
                 where: {
                     id: candidate_id
@@ -58,7 +56,6 @@ module.exports = {
                     user_id: req.user.User.id
                 }
             })
-
             // * Check if user already voted
             if (userVote !== null) {
                 res.status(400).json({

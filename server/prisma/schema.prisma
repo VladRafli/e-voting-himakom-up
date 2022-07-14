@@ -30,8 +30,8 @@ model Session {
 
 model Vote {
   id           Int       @id @default(autoincrement())
-  user_id      Int       @unique
-  candidate_id Int       @unique
+  user_id      Int       @db.Int
+  candidate_id Int       @db.Int
   User         User      @relation(fields: [user_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
   Candidate    Candidate @relation(fields: [candidate_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
   createdAt    DateTime  @default(now())
