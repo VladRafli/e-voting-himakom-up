@@ -32,7 +32,7 @@ if (noticeSeen === null || noticeSeen === false) {
 logoutButton.classList.add('hidden')
 
 axios
-    .get(`http://${window.location.host}/isloggedin`)
+    .get(`http://${window.location.host}/app/isloggedin`)
     .then((res) => {
         if (res.data === false) {
             voteButtons.forEach(el => {
@@ -45,7 +45,7 @@ axios
             logoutButton.classList.remove('hidden')
             // Cek apakah user sudah vote atau belum
             axios
-                .get(`http://${window.location.host}/vote`)
+                .get(`http://${window.location.host}/app/vote`)
                 .then(res => {
                     //alert(res?.data === true ? 'Sudah voting' : 'Belum voting')
                     if (res?.data) {
@@ -87,7 +87,7 @@ loginForm.addEventListener('submit', (e) => {
     const password = loginForm.querySelector('[name="password"]').value
 
     axios
-        .post(`http://${window.location.host}/login`, {
+        .post(`http://${window.location.host}/app/login`, {
             username: username,
             password: password
         })
@@ -125,7 +125,7 @@ voteButtons.forEach(el => {
 
     el.addEventListener('click', () => {
         axios
-            .post(`http://${window.location.host}/vote?id=${candidate_id}`)
+            .post(`http://${window.location.host}/app/vote?id=${candidate_id}`)
             .then((res) => {
                 voteSuccess.classList.remove('hidden')
                 voteSuccess.classList.add('flex')
@@ -154,7 +154,7 @@ voteSuccessClose.addEventListener('click', () => {
 
 logoutButton.addEventListener('click', () => {
     axios
-        .post(`http://${window.location.host}/logout`)
+        .post(`http://${window.location.host}/app/logout`)
         .then(res => {
             voteSuccess.classList.remove('hidden')
             voteSuccess.classList.add('flex')
