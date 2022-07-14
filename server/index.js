@@ -23,7 +23,9 @@ app.engine('.hbs', engine({ defaultLayout: false, extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, '/views'))
 app.use(express.static(path.join(__dirname, '/public')))
-app.use(cors())
+app.use(cors({
+    origin: ['*']
+}))
 app.use(morgan('dev'))
 app.use(cookieParser(
     process.env.SECRET

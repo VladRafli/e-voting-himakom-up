@@ -33,6 +33,8 @@ module.exports = {
      */
     create: async (req, res) => {
         try {
+            console.log(req.user)
+
             const candidate_id = parseInt(req.query.id)
 
             const candidate = await prisma.candidate.findUnique({
@@ -50,7 +52,7 @@ module.exports = {
             // * Get user vote
             const userVote = await prisma.vote.findFirst({
                 where: {
-                    user_id: req.user.id
+                    user_id: req.user.User.id
                 }
             })
 
@@ -65,7 +67,7 @@ module.exports = {
             await prisma.vote.create({
                 data: {
                     candidate_id: candidate_id,
-                    user_id: req.user.id
+                    user_id: req.user.User.id
                 }
             })
 
@@ -73,7 +75,7 @@ module.exports = {
                 msg: `Berhasil vote untuk ${candidate.name}`
             })
         } catch (err) {
-            res.status(500).json({ msg: err })
+            res.status(500).json({ msg: err.stack })
         }
     }
 } 
