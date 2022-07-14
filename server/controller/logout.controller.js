@@ -38,6 +38,6 @@ module.exports = async (req, res) => {
                 msg: 'Sucessfully logged out!'
             })
     } catch (err) {
-        res.status(500).json({ msg: err })
+        res.status(500).json({ msg: err.stack })
     }
 }

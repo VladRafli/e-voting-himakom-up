@@ -29,6 +29,6 @@ module.exports = async (req, res) => {
             res.status(200).cookie('session_id', checkSession.id, { httpOnly: true }).json(true)
         }
     } catch (err) {
-        res.status(500).json({ msg: err })
+        res.status(500).json({ msg: err.stack })
     }
 }
