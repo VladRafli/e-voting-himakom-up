@@ -8,6 +8,9 @@ const loginDialogElement = document.querySelector('#login-dialog')
 const loginDialog = new A11yDialog(loginDialogElement)
 const noticeDialogElement = document.querySelector('#notice-dialog')
 const noticeDialog = new A11yDialog(noticeDialogElement)
+const hasilVoteDialogElement = document.querySelector('#hslVote-dialog')
+const hasilVoteDialog = new A11yDialog(hasilVoteDialogElement)
+const hasilVoteBtn = document.querySelector('#hslVote-button')
 const voteButtons = document.querySelectorAll('#vote')
 const loginButton = document.querySelector('#login-button')
 const logoutButton = document.querySelector('#logout-button')
@@ -44,7 +47,11 @@ axios
             axios
                 .get(`http://${window.location.host}/vote`)
                 .then(res => {
-                    alert(res?.data === true ? 'Sudah voting' : 'Belum voting')
+                    //alert(res?.data === true ? 'Sudah voting' : 'Belum voting')
+                    if (res?.data) {
+                        hasilVoteBtn.classList.remove('hidden')
+                        hasilVoteDialog.show()
+                    }
                 })
                 .catch(err => {
                     // Disable Vote Button
