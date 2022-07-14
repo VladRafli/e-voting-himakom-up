@@ -37,7 +37,9 @@
         <img class="h-24" src="/app/img/HIMA PUTIH.png" alt="Logo Himakom Unperta">
         <div>
             <button id="notice-button" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none"
-            data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>    
+            data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
+            <button id="hslVote-button" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none hidden"
+            data-a11y-dialog-show="hslVote-dialog">Hasil Vote</button>    
             <button id="login-button"
                 class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none"
                 data-a11y-dialog-show="login-dialog">Login</button>
@@ -177,6 +179,20 @@
                 &times;
             </button>
             <h1 class="mb-5 text-3xl text-center">Tata Cara Pemilihan</h1>
+        </div>
+    </div>
+    <!-- A11y-Dialog Hasil Vote Form -->
+    <div class="dialog-container flex fixed top-0 right-0 bottom-0 left-0 z-[2] [&[aria-hidden=true]]:hidden"
+        id="hslVote-dialog" aria-hidden="true" aria-labelledby="Hasil Vote Dialog" aria-describedby="Dialog for Hasil Vote">
+        <div class="dialog-overlay fixed top-0 right-0 bottom-0 left-0 bg-gray-700 bg-opacity-80">
+        </div>
+        <div class="dialog-content h-full max-h-[90vh] min-h-[50vh] w-full max-w-[75vw] min-w-[20rem] m-auto p-10 flex flex-col relative bg-white z-[2]"
+            role="document">
+            <button data-a11y-dialog-hide class="dialog-close mb-5 text-[2.5rem] self-end"
+                aria-label="Close this dialog window">
+                &times;
+            </button>
+            <h1 class="mb-5 text-3xl text-center">Hasil Vote</h1>
         </div>
     </div>
     <!-- For compiling Dynamic used Tailwind Class -->

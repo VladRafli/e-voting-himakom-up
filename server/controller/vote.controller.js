@@ -22,7 +22,7 @@ module.exports = {
                 .status(200)
                 .json(count.user_id > 0 ? true : false)
         } catch (err) {
-            res.status(500).json({ msg: err })
+            res.status(500).json({ msg: err.stack })
         }
     },
     /**
@@ -73,7 +73,7 @@ module.exports = {
                 msg: `Berhasil vote untuk ${candidate.name}`
             })
         } catch (err) {
-            res.status(500).json({ msg: err })
+            res.status(500).json({ msg: err.stack })
         }
     }
 } 
