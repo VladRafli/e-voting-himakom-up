@@ -16,12 +16,16 @@ model User {
   password String    @db.VarChar(255)
   Vote     Vote[]
   Session  Session[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Session {
   id      String @id @db.Char(50)
   user_id Int    @unique
   User    User   @relation(fields: [user_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Vote {
@@ -30,10 +34,14 @@ model Vote {
   candidate_id Int       @unique
   User         User      @relation(fields: [user_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
   Candidate    Candidate @relation(fields: [candidate_id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Candidate {
   id   Int    @id @default(autoincrement())
   name String @db.VarChar(255)
   Vote Vote[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
