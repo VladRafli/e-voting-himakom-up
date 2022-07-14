@@ -81,12 +81,12 @@ nonScrictApiRoutes.use(
         res.set('ETag', 'false')
         helmet({
             hsts: false,
-            contentSecurityPolicy: false,
-            
+            contentSecurityPolicy: false
         })
         next()
 })
 nonScrictApiRoutes.get('/isloggedin', require('./controller/isLoggedIn.controller'))
+nonScrictApiRoutes.get('/isvoted', require('./middleware/auth.middleware'), require('./controller/isVoted.controller'))
 
 app.use(webRoutes)
 app.use(apiRoutes)

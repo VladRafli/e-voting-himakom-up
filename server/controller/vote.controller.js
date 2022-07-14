@@ -11,16 +11,21 @@ module.exports = {
      */
     read: async (req, res) => {
         try {
-            const count = await prisma.vote.count({
-                select: {
-                    user_id: true,
+            const vote = await prisma.vote.findFirst({
+                where: {
+                    id: req.user.id
                 },
-                where: req.user.id
+                include: {
+                    Candidate: true
+                }
             })
 
             res
                 .status(200)
-                .json(count.user_id > 0 ? true : false)
+                .json({
+                    msg: 'Success',
+                    data: vote
+                })
         } catch (err) {
             res.status(500).json({ msg: err.stack })
         }
@@ -33,8 +38,6 @@ module.exports = {
      */
     create: async (req, res) => {
         try {
-            console.log(req.user)
-
             const candidate_id = parseInt(req.query.id)
 
             const candidate = await prisma.candidate.findUnique({

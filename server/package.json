@@ -7,7 +7,12 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "client:watch": "webpack --config webpack.config.js --watch",
-    "client:build": "webpack --config webpack.config.js"
+    "client:build": "webpack --config webpack.config.js",
+    "init:prisma": "npx prisma init",
+    "migration:dev": "npx prisma migrate dev",
+    "migration:deploy": "npx prisma migrate deploy",
+    "migration:reset": "npx prisma migrate reset",
+    "generate:prisma": "npx prisma generate"
   },
   "keywords": [],
   "author": "VladRafli",
