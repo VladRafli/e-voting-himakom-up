@@ -27,29 +27,37 @@
 </head>
 
 <body>
-     <div id="spinner" class="h-screen w-screen bg-white fixed flex justify-center items-center animate__animated">
-        <svg role="status" class="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    <div id="spinner" class="h-screen w-screen bg-white fixed flex justify-center items-center animate__animated">
+        <svg role="status" class="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+            viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="currentColor" />
+            <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentFill" />
         </svg>
     </div>
-    <header class="p-10 flex justify-between items-center bg-[#112B3C]">
+    <header class="w-full p-10 flex justify-between items-center bg-[#112B3C]">
         {{!-- bg-gradient-to-tr from-red-500 via-orange-500 to-yellow-500 --}}
         <div class="flex flex-row">
             <img class="h-24" src="/img/HIMA PUTIH.png" alt="Logo Himakom Universitas Pertamina">
             <img class="h-24 rounded-md" src="/img/KPU.jpeg" alt="Logo KPU Universitas Pertamina">
         </div>
-        <div class="block">
-            <button id="notice-button" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none"
-            data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
-            <button id="hslVote-button" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none hidden"
-            data-a11y-dialog-show="hslVote-dialog">Bukti Surat Suara</button>    
+        <div class="md:block hidden">
+            <button id="notice-button"
+                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none"
+                data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
+            <button id="hslVote-button"
+                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none hidden"
+                data-a11y-dialog-show="hslVote-dialog">Bukti Surat Suara</button>
             <button id="login-button"
                 class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none"
                 data-a11y-dialog-show="login-dialog">Login</button>
             <button id="logout-button"
                 class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none">Logout</button>
         </div>
+        <button id="mobileMenu-button" data-a11y-dialog-show="mobileMenu-dialog" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none">Menu</button>
     </header>
     <main class="p-10 bg-repeat" style="background-image: url('/img/bg.jpeg')">
         <div id="vote-alert" class="p-4 mb-4 hidden bg-red-100 rounded-lg dark:bg-red-200" role="alert">
@@ -90,49 +98,73 @@
                 </svg>
             </button>
         </div>
-        <section class="flex flex-row flex-wrap items-start justify-between lg:justify-evenly w-full">
-            <div class="flex flex-col items-center w-fit lg:w-1/2">
+        <section class="w-full grid lg:grid-cols-2 grid-cols-1 gap-10">
+            <div class="w-full flex flex-col items-center">
                 {{!-- <h1 class="mb-5 text-3xl font-bold">Candidate Name</h1> --}}
-                <img class="w-[250px] lg:w-96 mb-5 rounded drop-shadow-xl" src="/img/candidate1.png" alt="Candidate Picture">
+                <img class="w-[250px] lg:w-96 mb-5 rounded drop-shadow-xl" src="/img/candidate1.png"
+                    alt="Candidate Picture">
                 <button id="vote" data-candidate="1"
                     class="mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gradient-to-r from-[#112B3C] to-gray-700 transition-colors hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 motion-reduce:transition-none">Vote</button>
-                <h1 class="mb-2 text-3xl font-medium">Visi</h1>
-                <p class="mb-5 text-xl lg:w-[600px] font-normal text-center">
-                    "Menjadikan Himpunan Mahasiswa Komunikasi Universitas Pertamina yang solid dan berprestasi."
-                </p>
-                <h1 class="mb-2 text-3xl font-medium">Misi</h1>
-                <ul class="list-disc lg:w-[600px] text-justify">
-                    <li>Membangun solidaritas antar mahasiswa Komunikasi Universitas Pertamina untuk membangun rasa kekeluargaan.</li>
-                    <li>Meningkatkan partisipasi mahasiswa Komunikasi Universitas Pertamina dengan berbagai macam kegiatan untuk membangun komunikasi yang lebih baik.</li>
-                    <li>Aktif mengadakan kegiatan yang menunjang prestasi akademik dan non akademik bagi mahasiswa Komunikasi Universitas Pertamina.</li>
-                    <li>Membentuk mahasiswa Komunikasi Universitas Pertamina yang berkarakter sopan dan santun.</li>
-                </ul>
+                <div class="grid grid-cols-1">
+                    <div class="flex flex-col items-center">
+                        <h1 class="mb-2 text-3xl font-medium">Visi</h1>
+                        <p class="mb-5 text-xl font-normal text-center">
+                            "Menjadikan Himpunan Mahasiswa Komunikasi Universitas Pertamina yang solid dan berprestasi."
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <h1 class="mb-2 text-3xl font-medium">Misi</h1>
+                        <ul class="list-disc text-justify">
+                            <li>Membangun solidaritas antar mahasiswa Komunikasi Universitas Pertamina untuk membangun
+                                rasa
+                                kekeluargaan.</li>
+                            <li>Meningkatkan partisipasi mahasiswa Komunikasi Universitas Pertamina dengan berbagai
+                                macam
+                                kegiatan untuk membangun komunikasi yang lebih baik.</li>
+                            <li>Aktif mengadakan kegiatan yang menunjang prestasi akademik dan non akademik bagi
+                                mahasiswa
+                                Komunikasi Universitas Pertamina.</li>
+                            <li>Membentuk mahasiswa Komunikasi Universitas Pertamina yang berkarakter sopan dan santun.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="flex flex-col items-center mt-20 lg:mt-0 w-fit lg:w-1/2">
+            <div class="w-full flex flex-col items-center">
                 {{!-- <h1 class="mb-5 text-3xl font-bold">Candidate Name</h1> --}}
-                <img class="w-[250px] lg:w-96 mb-5 rounded drop-shadow-xl" src="/img/candidate2.png" alt="Candidate Picture">
+                <img class="w-[250px] lg:w-96 mb-5 rounded drop-shadow-xl" src="/img/candidate2.png"
+                    alt="Candidate Picture">
                 <button id="vote" data-candidate="2"
                     class="mb-5 px-10 py-2.5 text-white text-center font-medium  rounded-lg bg-gradient-to-r from-[#112B3C] to-gray-700 transition-colors hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 motion-reduce:transition-none">Vote</button>
-                <h1 class="mb-2 text-3xl font-medium">Visi</h1>
-                <p class="mb-5 text-xl lg:w-[600px] font-normal text-center">
-                    "Mewujudkan Himpunan Mahasiswa Komunikasi Universitas Pertamina yang reaktif (Responsif dan Aktif)"
-                </p>
-                <h1 class="mb-2 text-3xl font-medium">Misi</h1>
-                <ul class="list-disc lg:w-[600px] text-justify">
-                    <li>Responsif terhadap aspirasi Mahasiswa Komunikasi Universitas Pertamina.</li>
-                    <li>Aktif menjadikan Himakom UPer sebagai wadah aspirasi, pengembangan minat dan bakat Mahasiswa Komunikasi Universitas Pertamina.</li>
-                    <li>Membangun kerja sama secara aktif dengan masyarakat Komunikasi Universitas Pertamina untuk meningkatkan partisipasi untuk membangun Komunikasi yang lebih baik.</li>
-                    <li>Membangun hubungan yang baik antar organisasi internal maupun eksternal</li>
-                </ul>
+                <div class="grid grid-cols-1">
+                    <div class="flex flex-col items-center">
+                        <h1 class="mb-2 text-3xl font-medium">Visi</h1>
+                        <p class="mb-5 text-xl font-normal text-center">
+                            "Mewujudkan Himpunan Mahasiswa Komunikasi Universitas Pertamina yang reaktif (Responsif dan
+                            Aktif)"
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <h1 class="mb-2 text-3xl font-medium">Misi</h1>
+                        <ul class="list-disc text-justify">
+                            <li>Responsif terhadap aspirasi Mahasiswa Komunikasi Universitas Pertamina.</li>
+                            <li>Aktif menjadikan Himakom UPer sebagai wadah aspirasi, pengembangan minat dan bakat
+                                Mahasiswa
+                                Komunikasi Universitas Pertamina.</li>
+                            <li>Membangun kerja sama secara aktif dengan masyarakat Komunikasi Universitas Pertamina
+                                untuk
+                                meningkatkan partisipasi untuk membangun Komunikasi yang lebih baik.</li>
+                            <li>Membangun hubungan yang baik antar organisasi internal maupun eksternal</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
-    </main> 
+    </main>
     <footer class="p-10 flex justify-center bg-repeat text-center" style="background-image: url('/img/bg.jpeg')">
         <p>Himpunan Mahasiswa Komunikasi Universitas Pertamina 2022<sub>&#174;</sub> - Website by <a
                 class="text-blue-500 hover:text-blue-500" href="https://www.linkedin.com/in/rafli-jaskandi/"
-                target="_blank" rel="noopener noreferrer">VladRafli</a> and <a
-                class="text-blue-500 hover:text-blue-500" href="https://github.com/hansburnthem"
-                target="_blank" rel="noopener noreferrer">hansburnthem</a></p>
+                target="_blank" rel="noopener noreferrer">VladRafli</a> and <a class="text-blue-500 hover:text-blue-500"
+                href="https://github.com/hansburnthem" target="_blank" rel="noopener noreferrer">hansburnthem</a></p>
     </footer>
     <!-- A11y-Dialog Login Form -->
     <div class="dialog-container flex fixed top-0 right-0 bottom-0 left-0 z-[2] [&[aria-hidden=true]]:hidden"
@@ -182,44 +214,95 @@
             </form>
         </div>
     </div>
-    <!-- A11y-Dialog Notice Form -->
+    <!-- A11y-Dialog Notice -->
     <div class="dialog-container flex fixed top-0 right-0 bottom-0 left-0 z-[2] [&[aria-hidden=true]]:hidden"
         id="notice-dialog" aria-hidden="true" aria-labelledby="Notice Dialog" aria-describedby="Dialog for Notice">
         <div class="dialog-overlay fixed top-0 right-0 bottom-0 left-0 bg-gray-700 bg-opacity-80">
         </div>
-        <div class="dialog-content h-full max-h-[70vh] lg:max-h-[40vh] min-h-[50vh] lg:min-h-[40vh] w-full max-w-[50vw] min-w-[20rem] m-auto flex flex-col relative bg-white z-[2]"
+        <div class="dialog-content h-[80vh] w-full max-w-[50vw] min-w-[20rem] m-auto lg:p-10 p-2.5 grid grid-cols-1 grid-rows-[auto_5fr] relative bg-white overflow-y-scroll z-[2]"
             role="document">
-            <button data-a11y-dialog-hide class="dialog-close self-end pt-2 pr-2"
-                aria-label="Close this dialog window">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-            </button>
-            <div class="flex flex-col items-center justify-start w-full">
-                <h1 class="text-3xl text-center mb-2">Tata Cara Pemilihan</h1>
-                <div class="text-justify flex flex-col w-[80%]">
-                    <span>1. Pemilih login menggunakan username dan password yang telah dikirimkan melalui email yang telah didaftarkan</span>
-                    <span>2. Pemilih dapat membaca visi dan misi dari masing-masing Paslon</span>
-                    <span>3. Pemilih memilih pasangan Calon Ketua Himpunan dan Wakil Ketua Himpunan Komunikasi Universitas Pertamina 2022/2023 dengan mengklik tombol Vote</span>
-                    <span>4. Jangan lupa untuk mengambil gambar (screenshot) sebagai bukti telah menggunakan hak suara dalam Pemira dengan menekan tombol Bukti Surat Suara</span>
-                    <span>5. Pemilih hanya dapat menggunakan suara sebanyak satu kali</span>
-                </div>
+            <div class="w-full flex justify-end">
+                <button data-a11y-dialog-hide class="dialog-close self-end pt-2 pr-2"
+                    aria-label="Close this dialog window">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="h-full w-full flex flex-col items-center justify-start">
+                <h1 class="text-3xl text-center mb-5">Tata Cara Pemilihan</h1>
+                <ol class="h-full w-[80%] flex flex-col text-justify list-decimal">
+                    <li>Pemilih login menggunakan username dan password yang telah dikirimkan melalui email yang
+                        telah didaftarkan</li>
+                    <li>Pemilih dapat membaca visi dan misi dari masing-masing Paslon</li>
+                    <li>Pemilih memilih pasangan Calon Ketua Himpunan dan Wakil Ketua Himpunan Komunikasi
+                        Universitas Pertamina 2022/2023 dengan mengklik tombol Vote</li>
+                    <li>Jangan lupa untuk mengambil gambar (screenshot) sebagai bukti telah menggunakan hak suara
+                        dalam Pemira dengan menekan tombol Bukti Surat Suara</li>
+                    <li>Pemilih hanya dapat menggunakan suara sebanyak satu kali</li>
+                    <li>Pemilih hanya dapat menggunakan suara sebanyak satu kali</li>
+                    <li>Pemilih hanya dapat menggunakan suara sebanyak satu kali</li>
+                </ol>
             </div>
         </div>
     </div>
-    <!-- A11y-Dialog Hasil Vote Form -->
+    <!-- A11y-Dialog Hasil Vote -->
     <div class="dialog-container flex fixed top-0 right-0 bottom-0 left-0 z-[2] [&[aria-hidden=true]]:hidden"
-        id="hslVote-dialog" aria-hidden="true" aria-labelledby="Hasil Vote Dialog" aria-describedby="Dialog for Hasil Vote">
+        id="hslVote-dialog" aria-hidden="true" aria-labelledby="Hasil Vote Dialog"
+        aria-describedby="Dialog for Hasil Vote">
         <div class="dialog-overlay fixed top-0 right-0 bottom-0 left-0 bg-gray-700 bg-opacity-80">
         </div>
-        <div class="dialog-content h-full max-h-[90vh] min-h-[50vh] w-full max-w-[75vw] min-w-[20rem] m-auto p-10 flex flex-col relative bg-white z-[2]"
+        <div class="dialog-content h-[80vh] w-full max-w-[50vw] min-w-[20rem] m-auto lg:p-10 p-2.5 grid grid-cols-1 grid-rows-[auto_5fr] relative bg-white overflow-y-scroll z-[2]"
             role="document">
-            <button data-a11y-dialog-hide class="dialog-close mb-5 text-[2.5rem] self-end"
-                aria-label="Close this dialog window">
-                &times;
-            </button>
-            <h1 class="mb-5 text-3xl text-center">Bukti Surat Suara</h1>
-            <div data-dialog-content></div>
+            <div class="w-full flex justify-end">
+                <button data-a11y-dialog-hide class="dialog-close self-end pt-2 pr-2"
+                    aria-label="Close this dialog window">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="h-full w-[80%] flex flex-col">
+                <h1 class="mb-5 text-3xl text-center">Bukti Surat Suara</h1>
+                <div data-dialog-content></div>
+            </div>
+        </div>
+    </div>
+    <!-- A11y-Dialog Menu Mobile -->
+    <div class="dialog-container flex fixed top-0 right-0 bottom-0 left-0 z-[2] [&[aria-hidden=true]]:hidden"
+        id="mobileMenu-dialog" aria-hidden="true" aria-labelledby="Mobile Menu Dialog"
+        aria-describedby="Dialog for Mobile Menu">
+        <div class="dialog-overlay fixed top-0 right-0 bottom-0 left-0 bg-gray-700 bg-opacity-80">
+        </div>
+        <div class="dialog-content h-full w-full m-auto lg:p-10 p-2.5 grid grid-cols-1 grid-rows-[auto_5fr] relative bg-white overflow-y-scroll z-[2]"
+            role="document">
+            <div class="w-full mb-10 flex justify-end">
+                <button data-a11y-dialog-hide class="dialog-close self-end pt-2 pr-2"
+                    aria-label="Close this dialog window">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="h-full w-full flex flex-col">
+                <button id="notice-button"
+                    class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none"
+                    data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
+                <button id="hslVote-button"
+                    class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none hidden"
+                    data-a11y-dialog-show="hslVote-dialog">Bukti Surat Suara</button>
+                <button id="login-button"
+                    class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none"
+                    data-a11y-dialog-show="login-dialog">Login</button>
+                <button id="logout-button"
+                    class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none">Logout</button>
+            </div>
         </div>
     </div>
     <!-- For compiling Dynamic used Tailwind Class -->
