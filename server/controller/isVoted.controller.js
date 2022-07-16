@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         //const count = await prisma.$queryRaw`SELECT COUNT(user_id) AS user_id_count FROM vote WHERE BINARY user_id = ${req.user.User.id}`
         res
             .status(200)
-            .json(count[0].user_id_count > 0 ? true : false)
+            .json(count.user_id > 0 ? true : false)
     } catch (err) {
         res.status(500).json({ msg: err.stack })
     }
