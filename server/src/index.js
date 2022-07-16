@@ -65,8 +65,9 @@ axios
                 .get(`http://${window.location.host}/isvoted`)
                 .then(res => {
                     if (res?.data) {
-                        hasilVoteBtn[0].classList.remove('hidden')
-                        hasilVoteBtn[1].classList.remove('hidden')
+                        hasilVoteBtn.forEach(el => {
+                            el.classList.remove('hidden') 
+                        })
                         hasilVoteDialog.show()
                         axios
                             .get(`http://${window.location.host}/vote`)
