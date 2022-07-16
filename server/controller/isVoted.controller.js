@@ -15,7 +15,9 @@ module.exports = async (req, res) => {
             select: {
                 user_id: true,
             },
-            where: req.user.User.id
+            where: {
+                user_id: req.user.User.id
+            }
         }) 
         //const count = await prisma.$queryRaw`SELECT COUNT(user_id) AS user_id_count FROM vote WHERE BINARY user_id = ${req.user.User.id}`
         res
