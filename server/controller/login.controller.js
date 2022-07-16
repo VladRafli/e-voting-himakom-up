@@ -17,24 +17,20 @@ module.exports = async (req, res) => {
         const sessionId = nanoid()
 
         // * Find user by username
-        const user = await prisma.user.findFirst({
-            where: {
-                username: username
-            }
-        })
+        // ! Buggy on MySQL or MariaDB
+        // const user = await prisma.user.findMany({
+        //     where: {
+        //         username: username
+        //     }
+        // })
+
+        /**
+         * @type {[{id: Number, username: String, password: String}]}
+         */
+        const user = await prisma.$queryRaw`SELECT id, username, password FROM user WHERE BINARY username = ${username}`
 
         // * Check if user not found
-        if (user === null) {
-            res.status(400).json({
-                msg: 'Username atau password salah!'
-            })
-            return
-        }
-
-        console.log(username, password)
-        console.log(user)
-
-        if (user.username !== username) {
+        if (user.length === 0) {
             res.status(400).json({
                 msg: 'Username atau password salah!'
             })
@@ -42,7 +38,7 @@ module.exports = async (req, res) => {
         }
 
         // * Check if password is wrong
-        if (!bcrypt.compareSync(password, user.password)) {
+        if (!bcrypt.compareSync(password, user[0].password)) {
             res.status(400).json({
                 msg: 'Username atau password salah!'
             })
@@ -53,13 +49,13 @@ module.exports = async (req, res) => {
         await prisma.session.upsert({
             create: {
                 id: sessionId,
-                user_id: user.id
+                user_id: user[0].id
             },
             update: {
                 id: sessionId
             },
             where: {
-                user_id: user.id
+                user_id: user[0].id
             }
         })
 
