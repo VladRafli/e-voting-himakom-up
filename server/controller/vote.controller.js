@@ -16,7 +16,8 @@ module.exports = {
                     user_id: req.user.User.id
                 },
                 include: {
-                    Candidate: true
+                    Candidate: true,
+                    User: true
                 }
             })
             res

@@ -38,26 +38,30 @@
                 fill="currentFill" />
         </svg>
     </div>
-    <header class="w-full p-10 flex justify-between items-center bg-[#112B3C]">
+    <header class="w-full p-5 flex justify-between items-center bg-[#112B3C]">
         {{!-- bg-gradient-to-tr from-red-500 via-orange-500 to-yellow-500 --}}
         <div class="flex flex-row">
-            <img class="h-24" src="/img/HIMA PUTIH.png" alt="Logo Himakom Universitas Pertamina">
-            <img class="h-24 rounded-md" src="/img/KPU.jpeg" alt="Logo KPU Universitas Pertamina">
+            <img class="h-14 lg:h-24" src="/img/HIMA PUTIH.png" alt="Logo Himakom Universitas Pertamina">
+            <img class="h-14 lg:h-24 rounded-md" src="/img/KPU.jpeg" alt="Logo KPU Universitas Pertamina">
         </div>
-        <div class="md:block hidden">
-            <button id="notice-button"
-                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none"
-                data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
-            <button id="hslVote-button"
-                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none hidden"
-                data-a11y-dialog-show="hslVote-dialog">Bukti Surat Suara</button>
-            <button id="login-button"
-                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none"
-                data-a11y-dialog-show="login-dialog">Login</button>
-            <button id="logout-button"
-                class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none">Logout</button>
+        <div class="md:flex hidden flex-col">
+            <div>
+                <button id="notice-button"
+                    class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none"
+                    data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
+                <button id="hslVote-button"
+                    class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-gray-700 font-medium rounded-lg text-sm transition-colors hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 motion-reduce:transition-none hidden"
+                    data-a11y-dialog-show="hslVote-dialog">Bukti Surat Suara</button>
+                <button id="login-button"
+                    class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none"
+                    data-a11y-dialog-show="login-dialog">Login</button>
+                <button id="logout-button"
+                    class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none" onclick="logoutBtnOnClick()">Logout</button>    
+            </div>
+            <div id="welcomeContainer" 
+                class="hidden text-white text-xl font-medium pr-5 text-right"></div>
         </div>
-        <button id="mobileMenu-button" data-a11y-dialog-show="mobileMenu-dialog" class="h-fit mr-2 mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none">Menu</button>
+        <button id="mobileMenu-button" data-a11y-dialog-show="mobileMenu-dialog" class="h-fit mb-2 px-10 py-2.5 text-white bg-blue-700 font-medium rounded-lg text-sm transition-colors hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 motion-reduce:transition-none md:hidden">Menu</button>
     </header>
     <main class="p-10 bg-repeat" style="background-image: url('/img/bg.jpeg')">
         <div id="vote-alert" class="p-4 mb-4 hidden bg-red-100 rounded-lg dark:bg-red-200" role="alert">
@@ -98,6 +102,8 @@
                 </svg>
             </button>
         </div>
+        <img class="w-[450px] lg:w-[500px] mb-5 mx-auto" src="/img/welcome.png"
+            alt="Candidate Picture">
         <section class="w-full grid lg:grid-cols-2 grid-cols-1 gap-10">
             <div class="w-full flex flex-col items-center">
                 {{!-- <h1 class="mb-5 text-3xl font-bold">Candidate Name</h1> --}}
@@ -106,7 +112,7 @@
                 <button id="vote" data-candidate="1"
                     class="mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gradient-to-r from-[#112B3C] to-gray-700 transition-colors hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 motion-reduce:transition-none">Vote</button>
                 <div class="grid grid-cols-1">
-                    <div class="flex flex-col items-center">
+                    <div class="flex flex-col items-center h-full min-h-[130px] max-h-[200px]">
                         <h1 class="mb-2 text-3xl font-medium">Visi</h1>
                         <p class="mb-5 text-xl font-normal text-center">
                             "Menjadikan Himpunan Mahasiswa Komunikasi Universitas Pertamina yang solid dan berprestasi."
@@ -137,7 +143,7 @@
                 <button id="vote" data-candidate="2"
                     class="mb-5 px-10 py-2.5 text-white text-center font-medium  rounded-lg bg-gradient-to-r from-[#112B3C] to-gray-700 transition-colors hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 motion-reduce:transition-none">Vote</button>
                 <div class="grid grid-cols-1">
-                    <div class="flex flex-col items-center">
+                    <div class="flex flex-col items-center h-full min-h-[130px] max-h-[200px]">
                         <h1 class="mb-2 text-3xl font-medium">Visi</h1>
                         <p class="mb-5 text-xl font-normal text-center">
                             "Mewujudkan Himpunan Mahasiswa Komunikasi Universitas Pertamina yang reaktif (Responsif dan
@@ -242,8 +248,6 @@
                     <li>Jangan lupa untuk mengambil gambar (screenshot) sebagai bukti telah menggunakan hak suara
                         dalam Pemira dengan menekan tombol Bukti Surat Suara</li>
                     <li>Pemilih hanya dapat menggunakan suara sebanyak satu kali</li>
-                    <li>Pemilih hanya dapat menggunakan suara sebanyak satu kali</li>
-                    <li>Pemilih hanya dapat menggunakan suara sebanyak satu kali</li>
                 </ol>
             </div>
         </div>
@@ -268,7 +272,9 @@
             </div>
             <div class="h-full w-[80%] flex flex-col">
                 <h1 class="mb-5 text-3xl text-center">Bukti Surat Suara</h1>
-                <div data-dialog-content></div>
+                <div data-dialog-content class="mb-5"></div>
+                <p>Silahkan unggah hasil screenshot layar berikut ini pada link dibawah.</p>
+                <a target="_blank" href="http://bit.ly/BuktiSuara_Pemira" class="text-blue-900 font-medium">bit.ly/BuktiSuara_Pemira</a>
             </div>
         </div>
     </div>
@@ -291,17 +297,19 @@
                 </button>
             </div>
             <div class="h-full w-full flex flex-col">
+                <div id="welcomeContainer" 
+                    class="text-black text-xl font-medium text-center mb-5"></div>
                 <button id="notice-button"
                     class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none"
-                    data-a11y-dialog-show="notice-dialog">Petunjuk Pemilihan</button>
+                    data-a11y-dialog-show="notice-dialog" onclick="hideMobileMenu()">Petunjuk Pemilihan</button>
                 <button id="hslVote-button"
                     class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none hidden"
-                    data-a11y-dialog-show="hslVote-dialog">Bukti Surat Suara</button>
+                    data-a11y-dialog-show="hslVote-dialog" onclick="hideMobileMenu()">Bukti Surat Suara</button>
                 <button id="login-button"
                     class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none"
-                    data-a11y-dialog-show="login-dialog">Login</button>
+                    data-a11y-dialog-show="login-dialog" onclick="hideMobileMenu()">Login</button>
                 <button id="logout-button"
-                    class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none">Logout</button>
+                    class="h-fit mb-5 text-black font-medium text-xl text-center transition-colors hover:text-gray-700 focus:text-gray-700 motion-reduce:transition-none" onclick="logoutBtnOnClick()">Logout</button>
             </div>
         </div>
     </div>
