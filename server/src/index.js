@@ -12,11 +12,12 @@ const hasilVoteDialogElement = document.querySelector('#hslVote-dialog')
 const hasilVoteDialog = new A11yDialog(hasilVoteDialogElement)
 const menuMobileDialogElement = document.querySelector('#mobileMenu-dialog')
 const menuMobileDialog = new A11yDialog(menuMobileDialogElement)
-const hasilVoteBtn = document.querySelector('#hslVote-button')
+const hasilVoteBtn = document.querySelectorAll('#hslVote-button')
 const voteButtons = document.querySelectorAll('#vote')
-const loginButton = document.querySelector('#login-button')
-const logoutButton = document.querySelector('#logout-button')
+const loginButton = document.querySelectorAll('#login-button')
+const logoutButton = document.querySelectorAll('#logout-button')
 const loginForm = document.querySelector('#login-form')
+const welcomeContainer = document.querySelectorAll('#welcomeContainer')
 const loginAlert = document.querySelector('#login-alert')
 const loginAlertClose = loginAlert.querySelector('button')
 const voteAlert = document.querySelector('#vote-alert')
@@ -31,34 +32,51 @@ if (noticeSeen === null || noticeSeen === false) {
     setNotice(true)
 }
 
-logoutButton.classList.add('hidden')
+logoutButton[0].classList.add('hidden')
+logoutButton[1].classList.add('hidden')
 
 axios
     .get(`http://${window.location.host}/isloggedin`)
     .then((res) => {
-        if (res.data === false) {
+        if (res.data.isLoggedIn === false) {
             voteButtons.forEach(el => {
                 // Disable Vote Button
                 el.classList.value = 'mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gray-300 cursor-not-allowed'
                 el.setAttribute('disabled', '')
             })
         } else {
-            loginButton.classList.add('hidden')
-            logoutButton.classList.remove('hidden')
+            loginButton.forEach(el => {
+                el.classList.add('hidden')
+                el.classList.add('hidden')
+            })
+
+            logoutButton.forEach(el => {
+                el.classList.remove('hidden')
+                el.classList.remove('hidden')
+            })
+            
+            welcomeContainer.forEach(el => {
+                el.classList.remove('hidden')
+                el.innerHTML = `
+                    Selamat Datang, ${res.data?.username}
+                `
+            })
+            
             // Cek apakah user sudah vote atau belum
             axios
                 .get(`http://${window.location.host}/isvoted`)
                 .then(res => {
                     if (res?.data) {
-                        hasilVoteBtn.classList.remove('hidden')
+                        hasilVoteBtn[0].classList.remove('hidden')
+                        hasilVoteBtn[1].classList.remove('hidden')
                         hasilVoteDialog.show()
                         axios
                             .get(`http://${window.location.host}/vote`)
                             .then(res => {
-                                console.log(res?.data)
                                 hasilVoteDialogElement.querySelector('[data-dialog-content]').innerHTML = `
-                                    <p>Kandidat Dipilih: ${res.data?.data?.Candidate?.name}</p>
-                                    <p>Waktu Voting: ${new Date(res.data?.data?.createdAt)}</p>
+                                    <p>Username: <b>${res.data?.data?.User?.username}</b></p>
+                                    <p>Kandidat Dipilih: <b>${res.data?.data?.Candidate?.name}</b></p>
+                                    <p>Waktu Voting: <b>${new Date(res.data?.data?.createdAt)}</b></p>
                                 `
                             })
                     }
@@ -105,7 +123,8 @@ loginForm.addEventListener('submit', (e) => {
             // Close any alert shown
             loginAlert.classList.remove('flex')
             loginAlert.classList.add('hidden')
-            loginButton.classList.remove('hidden')
+            loginButton[0].classList.remove('hidden')
+            loginButton[1].classList.remove('hidden')
             // Enable Vote Button
             voteButtons.forEach(el => {
                 // Disable Vote Button
@@ -162,7 +181,7 @@ voteSuccessClose.addEventListener('click', () => {
     voteSuccess.classList.add('hidden')
 })
 
-logoutButton.addEventListener('click', () => {
+function logoutBtnOnClick() {
     axios
         .post(`http://${window.location.host}/logout`)
         .then(res => {
@@ -176,4 +195,11 @@ logoutButton.addEventListener('click', () => {
             voteAlert.classList.add('flex')
             voteAlert.querySelector('[data-alert-text]').innerHTML = err.response.data.msg
         })
-})
+}
+
+function hideMobileMenu() {
+    menuMobileDialog.hide()   
+}
+
+window.logoutBtnOnClick = logoutBtnOnClick
+window.hideMobileMenu = hideMobileMenu
