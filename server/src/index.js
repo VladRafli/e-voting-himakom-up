@@ -47,11 +47,9 @@ axios
         } else {
             loginButton.forEach(el => {
                 el.classList.add('hidden')
-                el.classList.add('hidden')
             })
 
             logoutButton.forEach(el => {
-                el.classList.remove('hidden')
                 el.classList.remove('hidden')
             })
             

@@ -31,6 +31,16 @@ module.exports = async (req, res) => {
             return
         }
 
+        console.log(username, password)
+        console.log(user)
+
+        if (user.username !== username) {
+            res.status(400).json({
+                msg: 'Username atau password salah!'
+            })
+            return
+        }
+
         // * Check if password is wrong
         if (!bcrypt.compareSync(password, user.password)) {
             res.status(400).json({
