@@ -11,13 +11,13 @@ const prisma = new PrismaClient()
 module.exports = async (req, res) => {
     try {
         // ! Buggy
-        /* const count = await prisma.vote.count({
+        const count = await prisma.vote.count({
             select: {
                 user_id: true,
             },
-            where: req.user.id
-        }) */
-        const count = await prisma.$queryRaw`SELECT COUNT(user_id) AS user_id_count FROM vote WHERE BINARY user_id = ${req.user.User.id}`
+            where: req.user.User.id
+        }) 
+        //const count = await prisma.$queryRaw`SELECT COUNT(user_id) AS user_id_count FROM vote WHERE BINARY user_id = ${req.user.User.id}`
         res
             .status(200)
             .json(count[0].user_id_count > 0 ? true : false)
