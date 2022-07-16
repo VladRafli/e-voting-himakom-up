@@ -75,7 +75,7 @@ axios
                                 hasilVoteDialogElement.querySelector('[data-dialog-content]').innerHTML = `
                                     <p>Username: <b>${res.data?.data?.User?.username}</b></p>
                                     <p>Kandidat Dipilih: <b>${res.data?.data?.Candidate?.name}</b></p>
-                                    <p>Waktu Voting: <b>${new Date(res.data?.data?.createdAt)}</b></p>
+                                    <p>Waktu Voting: <b>${res.data?.data?.createdAt}</b></p>
                                 `
                             })
                     }
