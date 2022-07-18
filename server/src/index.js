@@ -36,7 +36,7 @@ logoutButton[0].classList.add('hidden')
 logoutButton[1].classList.add('hidden')
 
 axios
-    .get(`http://${window.location.host}/isloggedin`)
+    .get(`https://${window.location.host}/isloggedin`)
     .then((res) => {
         if (res.data.isLoggedIn === false) {
             voteButtons.forEach(el => {
@@ -62,7 +62,7 @@ axios
             
             // Cek apakah user sudah vote atau belum
             axios
-                .get(`http://${window.location.host}/isvoted`)
+                .get(`https://${window.location.host}/isvoted`)
                 .then(res => {
                     if (res?.data) {
                         hasilVoteBtn.forEach(el => {
@@ -70,7 +70,7 @@ axios
                         })
                         hasilVoteDialog.show()
                         axios
-                            .get(`http://${window.location.host}/vote`)
+                            .get(`https://${window.location.host}/vote`)
                             .then(res => {
                                 hasilVoteDialogElement.querySelector('[data-dialog-content]').innerHTML = `
                                     <p>Username: <b>${res.data?.data?.User?.username}</b></p>
@@ -114,7 +114,7 @@ loginForm.addEventListener('submit', (e) => {
     const password = loginForm.querySelector('[name="password"]').value
 
     axios
-        .post(`http://${window.location.host}/login`, {
+        .post(`https://${window.location.host}/login`, {
             username: username,
             password: password
         })
@@ -153,7 +153,7 @@ voteButtons.forEach(el => {
 
     el.addEventListener('click', () => {
         axios
-            .post(`http://${window.location.host}/vote?id=${candidate_id}`)
+            .post(`https://${window.location.host}/vote?id=${candidate_id}`)
             .then((res) => {
                 voteSuccess.classList.remove('hidden')
                 voteSuccess.classList.add('flex')
@@ -182,7 +182,7 @@ voteSuccessClose.addEventListener('click', () => {
 
 function logoutBtnOnClick() {
     axios
-        .post(`http://${window.location.host}/logout`)
+        .post(`https://${window.location.host}/logout`)
         .then(res => {
             voteSuccess.classList.remove('hidden')
             voteSuccess.classList.add('flex')
