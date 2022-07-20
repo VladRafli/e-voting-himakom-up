@@ -39,43 +39,52 @@ module.exports = {
      */
     create: async (req, res) => {
         try {
-            const candidate_id = parseInt(req.query.id)
-            const candidate = await prisma.candidate.findUnique({
-                where: {
-                    id: candidate_id
-                }
-            })
-            // * Check if candidate available
-            if (candidate === null) {
-                res.status(400).json({
-                    msg: 'Calon tidak ditemukan!'
+            if (
+                dayjs('2022-07-24').diff(dayjs(), 'day', true) > 0 && 
+                dayjs('2022-07-24').diff(dayjs(), 'day', true) <= 1
+            ) {
+                const candidate_id = parseInt(req.query.id)
+                const candidate = await prisma.candidate.findUnique({
+                    where: {
+                        id: candidate_id
+                    }
                 })
-                return
-            }
-            // * Get user vote
-            const userVote = await prisma.vote.findFirst({
-                where: {
-                    user_id: req.user.User.id
+                // * Check if candidate available
+                if (candidate === null) {
+                    res.status(400).json({
+                        msg: 'Calon tidak ditemukan!'
+                    })
+                    return
                 }
-            })
-            // * Check if user already voted
-            if (userVote !== null) {
-                res.status(400).json({
-                    msg: 'User sudah melakukan voting'
+                // * Get user vote
+                const userVote = await prisma.vote.findFirst({
+                    where: {
+                        user_id: req.user.User.id
+                    }
                 })
-                return
-            }
-            // * Insert user vote
-            await prisma.vote.create({
-                data: {
-                    candidate_id: candidate_id,
-                    user_id: req.user.User.id
+                // * Check if user already voted
+                if (userVote !== null) {
+                    res.status(400).json({
+                        msg: 'User sudah melakukan voting'
+                    })
+                    return
                 }
-            })
-
-            res.status(200).json({
-                msg: `Berhasil vote untuk ${candidate.name}`
-            })
+                // * Insert user vote
+                await prisma.vote.create({
+                    data: {
+                        candidate_id: candidate_id,
+                        user_id: req.user.User.id
+                    }
+                })
+    
+                res.status(200).json({
+                    msg: `Berhasil vote untuk ${candidate.name}`
+                })
+            } else {
+                res.status(400).json({
+                    msg: 'Voting sudah ditutup!'
+                })
+            }
         } catch (err) {
             res.status(500).json({ msg: err.stack })
         }

@@ -45,6 +45,13 @@ axios
                 el.setAttribute('disabled', '')
             })
         } else {
+            // TODO: Cek waktu vote
+            voteButtons.forEach(el => {
+                // Disable Vote Button
+                el.classList.value = 'mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gray-300 cursor-not-allowed'
+                el.setAttribute('disabled', '')
+            })
+
             loginButton.forEach(el => {
                 el.classList.add('hidden')
             })
