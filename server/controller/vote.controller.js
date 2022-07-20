@@ -20,8 +20,7 @@ module.exports = {
                     User: true
                 }
             })
-
-            
+            vote.createdAt = new Date(vote?.createdAt).toString()
             res
                 .status(200)
                 .json({

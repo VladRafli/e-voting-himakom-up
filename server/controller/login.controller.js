@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
         /**
          * @type {[{id: Number, username: String, password: String}]}
          */
-        const user = await prisma.$queryRaw`SELECT id, username, password FROM user WHERE BINARY username = ${username}`
+        const user = await prisma.$queryRaw`SELECT id, username, password FROM User WHERE BINARY username = ${username}`
 
         // * Check if user not found
         if (user.length === 0) {
