@@ -46,6 +46,7 @@ axios
             })
         } else {
             // TODO: Cek waktu vote
+            
             voteButtons.forEach(el => {
                 // Disable Vote Button
                 el.classList.value = 'mb-5 px-10 py-2.5 text-white text-center font-medium rounded-lg bg-gray-300 cursor-not-allowed'
@@ -115,6 +116,12 @@ axios
             spinner.classList.add('hidden')
         }, 1500)
     })
+
+// TODO: Countdown
+// waktuContainer.innerHTML = waktuServer - dayjs() -> Initial State
+// setInterval(() => {
+//  waktuContainer.innerHTML = waktuServer - dayjs()
+// }, 500) -> Keberlanjutannya
 
 loginForm.addEventListener('submit', (e) => {
     const username = loginForm.querySelector('[name="username"]').value
