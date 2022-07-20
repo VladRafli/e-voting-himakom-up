@@ -86,6 +86,7 @@ nonScrictApiRoutes.use(
         next()
 })
 nonScrictApiRoutes.get('/isloggedin', require('./controller/isLoggedIn.controller'))
+nonScrictApiRoutes.get('/isvotetime', require('./controller/isTime.controller'))
 nonScrictApiRoutes.get('/isvoted', require('./middleware/auth.middleware'), require('./controller/isVoted.controller'))
 
 app.use(webRoutes)
