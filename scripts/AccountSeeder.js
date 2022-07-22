@@ -11,7 +11,7 @@ dataRow.pop()
 let dataColHead = []
 let dataCol = dataRow.map(
     /** 
-        @returns {{nim: String, nama: String, email: String, username: String, password: String}} 
+        @returns {{username: String, password: String}} 
     */
     (val, idx) => {
     const data = val.split(',')
@@ -25,11 +25,7 @@ let dataCol = dataRow.map(
 
     return {
         [dataColHead[0]]: data[0],
-        [dataColHead[1]]: data[1],
-        [dataColHead[2]]: data[2],
-        [dataColHead[3]]: data[3],
-        [dataColHead[4]]: data[4],
-        [dataColHead[5]]: data[5]
+        [dataColHead[1]]: data[1]
     }
 })
 
