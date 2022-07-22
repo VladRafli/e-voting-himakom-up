@@ -49,7 +49,7 @@ axios
             axios
                 .get(`https://${window.location.host}/isvotetime`)
                 .then((res) => {
-                    console.log(res.isVoteTime);
+                    console.log(res);
                     if(!res.isVoteTime) {
                         voteButtons.forEach(el => {
                             // Disable Vote Button
