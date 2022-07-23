@@ -43,6 +43,6 @@ const conn = mysql.createConnection({
 })
 
 
-conn.query(`INSERT INTO \`user\`(\`username\`, \`password\`) VALUES ${input};`)
+conn.query(`INSERT INTO \`user\`(\`username\`, \`password\`, \`updatedAt\`) VALUES ${input};`)
 
 process.exit(0)
